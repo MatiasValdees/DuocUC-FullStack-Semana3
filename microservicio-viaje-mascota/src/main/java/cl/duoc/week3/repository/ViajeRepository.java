@@ -50,7 +50,8 @@ public class ViajeRepository implements IViajeRepository{
 
         Mascota mascota1 = new Mascota();
         mascota1.setNombre("Firulais");
-        mascota1.setEdad("3");
+        mascota1.setEdad(3);
+        mascota1.setNumChip("213121231");
         usuario1.setMascota(mascota1);
         usuarios1.add(usuario1);
 
@@ -62,7 +63,8 @@ public class ViajeRepository implements IViajeRepository{
 
         Mascota mascota2 = new Mascota();
         mascota2.setNombre("Luna");
-        mascota2.setEdad("5");
+        mascota2.setEdad(5);
+        mascota2.setNumChip("9121231");
         usuario2.setMascota(mascota2);
         usuarios1.add(usuario2);
 
@@ -91,7 +93,8 @@ public class ViajeRepository implements IViajeRepository{
 
         Mascota mascota3 = new Mascota();
         mascota3.setNombre("Max");
-        mascota3.setEdad("2");
+        mascota3.setEdad(2);
+        mascota3.setNumChip("11999");
         usuario4.setMascota(mascota3);
         usuarios2.add(usuario4);
 
@@ -103,7 +106,8 @@ public class ViajeRepository implements IViajeRepository{
 
         Mascota mascota4 = new Mascota();
         mascota4.setNombre("Bella");
-        mascota4.setEdad("4");
+        mascota4.setEdad(4);
+        mascota4.setNumChip("9999");
         usuario5.setMascota(mascota4);
         usuarios2.add(usuario5);
 
@@ -132,7 +136,8 @@ public class ViajeRepository implements IViajeRepository{
 
         Mascota mascota5 = new Mascota();
         mascota5.setNombre("Toby");
-        mascota5.setEdad("1");
+        mascota5.setEdad(1);
+        mascota5.setNumChip("912878921");
         usuario7.setMascota(mascota5);
         usuarios3.add(usuario7);
 
@@ -144,7 +149,8 @@ public class ViajeRepository implements IViajeRepository{
 
         Mascota mascota6 = new Mascota();
         mascota6.setNombre("Nina");
-        mascota6.setEdad("6");
+        mascota6.setEdad(6);
+        mascota6.setNumChip("78971982");
         usuario8.setMascota(mascota6);
         usuarios3.add(usuario8);
 
