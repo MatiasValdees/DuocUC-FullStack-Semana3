@@ -11,7 +11,8 @@ import lombok.*;
 public class Envio {
     private Long id;
     private String direccion;
-    private String comuna;
+    private String pais;
+    private String ciudad;
     private Cliente cliente;
     private String latitud;
     private String longitud;
