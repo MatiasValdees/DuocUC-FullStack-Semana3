@@ -13,8 +13,9 @@ public class Envio {
     private String direccion;
     private String pais;
     private String ciudad;
-    private Cliente cliente;
-    private String latitud;
+    private Cliente emisor;
+    private Cliente receptor;
     private String longitud;
+    private String latitud;
     private EstadoEnvio estado;
 }

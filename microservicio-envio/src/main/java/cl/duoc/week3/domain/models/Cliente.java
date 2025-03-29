@@ -10,4 +10,5 @@ import lombok.*;
 public class Cliente {
     private String rut;
     private String nombres;
-    private String apellidos;}
+    private String apellidos;
+}
