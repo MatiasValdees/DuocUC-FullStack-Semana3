@@ -55,7 +55,7 @@ class EnvioServiceTest {
         //when
         when(repository.findById(1L)).thenReturn(Optional.empty());
         //Then
-        var exception = assertThrows(EnvioNoEncontrado.class, () -> envioService.findById(idNotFound));
+        assertThrows(EnvioNoEncontrado.class, () -> envioService.findById(idNotFound));
 
     }
 

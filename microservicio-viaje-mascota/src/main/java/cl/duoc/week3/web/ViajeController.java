@@ -3,6 +3,9 @@ package cl.duoc.week3.web;
 import cl.duoc.week3.domain.models.Viaje;
 import cl.duoc.week3.service.IViajeService;
 
+import cl.duoc.week3.web.hateoas.ViajeModelAssembler;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,56 +28,75 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 import cl.duoc.week3.web.dtos.ViajeUpdateRequest;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 
 @RequestMapping("viajes")
 @RestController
 public class ViajeController {
+
     private final IViajeService service;
-    public ViajeController(IViajeService service) {
+    private final ViajeModelAssembler assembler;
+
+    public ViajeController(IViajeService service, ViajeModelAssembler assembler) {
         this.service = service;
+        this.assembler = assembler;
     }
+
     @GetMapping
-    public ResponseEntity<ResponseWrapper<List<Viaje>>> getAll() {
+    public ResponseEntity<ResponseWrapper<CollectionModel<EntityModel<Viaje>>>> getAll() {
+        List<EntityModel<Viaje>> viajes = service.findAll().stream()
+                .map(assembler::toModel)
+                .toList();
+
+        CollectionModel<EntityModel<Viaje>> collectionModel = CollectionModel.of(
+                viajes,
+                linkTo(methodOn(ViajeController.class).getAll()).withSelfRel()
+        );
+
         return ResponseEntity.ok(
-            ResponseWrapper.<List<Viaje>>builder()
-                .status("OK")
-                .timestamp(LocalDateTime.now())
-                .data(service.findAll())
-                .build()
+                ResponseWrapper.<CollectionModel<EntityModel<Viaje>>>builder()
+                        .status("OK")
+                        .timestamp(LocalDateTime.now())
+                        .data(collectionModel)
+                        .build()
         );
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<ResponseWrapper<Viaje>> getById(@PathVariable Long id) {
+    public ResponseEntity<ResponseWrapper<EntityModel<Viaje>>> getById(@PathVariable Long id) {
+        Viaje viaje = service.findById(id);
         return ResponseEntity.ok(
-            ResponseWrapper.<Viaje>builder()
-                .status("OK")
-                .timestamp(LocalDateTime.now())
-                .data(service.findById(id))
-                .build()
+                ResponseWrapper.<EntityModel<Viaje>>builder()
+                        .status("OK")
+                        .timestamp(LocalDateTime.now())
+                        .data(assembler.toModel(viaje))
+                        .build()
         );
     }
 
     @PostMapping
-    public ResponseEntity<ResponseWrapper<Viaje>> create(@Valid @RequestBody ViajeCreateRequest request) {
+    public ResponseEntity<ResponseWrapper<EntityModel<Viaje>>> create(@Valid @RequestBody ViajeCreateRequest request) {
+        Viaje created = service.create(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(
-            ResponseWrapper.<Viaje>builder()
-                .status("OK")
-                .timestamp(LocalDateTime.now())
-                .data(service.create(request))
-                .build()
+                ResponseWrapper.<EntityModel<Viaje>>builder()
+                        .status("OK")
+                        .timestamp(LocalDateTime.now())
+                        .data(assembler.toModel(created))
+                        .build()
         );
     }
 
     @PutMapping
-    public ResponseEntity<ResponseWrapper<Viaje>> update(@Valid @RequestBody ViajeUpdateRequest request) {
+    public ResponseEntity<ResponseWrapper<EntityModel<Viaje>>> update(@Valid @RequestBody ViajeUpdateRequest request) {
+        Viaje updated = service.update(request);
         return ResponseEntity.ok(
-            ResponseWrapper.<Viaje>builder()
-                .status("OK")
-                .timestamp(LocalDateTime.now())
-                .data(service.update(request))
-                .build()
+                ResponseWrapper.<EntityModel<Viaje>>builder()
+                        .status("OK")
+                        .timestamp(LocalDateTime.now())
+                        .data(assembler.toModel(updated))
+                        .build()
         );
     }
 
@@ -82,12 +104,12 @@ public class ViajeController {
     public ResponseEntity<ResponseWrapper<String>> delete(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.ok(
-            ResponseWrapper.<String>builder()
-                .status("OK")
-                .timestamp(LocalDateTime.now())
-                .data("Viaje eliminado")
-                .build()
+                ResponseWrapper.<String>builder()
+                        .status("OK")
+                        .timestamp(LocalDateTime.now())
+                        .data("Viaje eliminado")
+                        .build()
         );
     }
-    
 }
+
