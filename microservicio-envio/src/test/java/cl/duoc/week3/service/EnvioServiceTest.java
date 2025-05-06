@@ -243,4 +243,14 @@ class EnvioServiceTest {
         // Then
         assertDoesNotThrow(() -> envioService.delete(id));
     }
+    @Test
+    @DisplayName("Test eliminar envio - NotFound")
+    void deleteNotFound() {
+        // Given
+        Long id= 1L;
+        // When
+        when(repository.findById(id)).thenReturn(Optional.empty());
+        // Then
+        assertThrows(EnvioNoEncontrado.class, () -> envioService.delete(id));
+    }
 }

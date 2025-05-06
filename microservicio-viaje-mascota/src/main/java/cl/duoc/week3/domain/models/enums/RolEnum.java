@@ -4,8 +4,8 @@ import lombok.Getter;
 
 @Getter
 public enum RolEnum {
-    DUENO_MASCOTA("Dueño de Mascota"),
-    CONDUCTOR("Conductor de Transporte Pet-Friendly");
+    DUENO_MASCOTA("PASAJERO"),
+    CONDUCTOR("CHOFER");
 
     private String descripcion;
 
