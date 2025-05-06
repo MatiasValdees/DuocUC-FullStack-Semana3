@@ -189,17 +189,6 @@ class ViajeServiceTest {
     @DisplayName("Test crear viaje - chofer no encontrado")
     void createChoferNotFound() {
         // Given
-        Usuario chofer = new Usuario();
-        chofer.setId(1L);
-        chofer.setNombres("Juan Juan");
-        chofer.setRol(RolEnum.CONDUCTOR.getDescripcion());
-
-        Usuario pasajero = new Usuario();
-        pasajero.setId(2L);
-        pasajero.setNombres("María María");
-        pasajero.setRol(RolEnum.DUENO_MASCOTA.getDescripcion());
-
-
         ViajeCreateRequest request= new ViajeCreateRequest(
                 "Av. 123",
                 "Springfield",
@@ -219,11 +208,6 @@ class ViajeServiceTest {
         chofer.setId(1L);
         chofer.setNombres("Juan Juan");
         chofer.setRol(RolEnum.CONDUCTOR.getDescripcion());
-
-        Usuario pasajero = new Usuario();
-        pasajero.setId(2L);
-        pasajero.setNombres("María María");
-        pasajero.setRol(RolEnum.DUENO_MASCOTA.getDescripcion());
 
         ViajeCreateRequest request= new ViajeCreateRequest(
                 "Av. 123",
