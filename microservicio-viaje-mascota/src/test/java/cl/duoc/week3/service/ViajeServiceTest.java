@@ -199,13 +199,6 @@ class ViajeServiceTest {
         pasajero.setNombres("María María");
         pasajero.setRol(RolEnum.DUENO_MASCOTA.getDescripcion());
 
-        Viaje viaje = new Viaje();
-        viaje.setId(1L);
-        viaje.setDireccion("Av. 123");
-        viaje.setCiudad("Springfield");
-        viaje.setChofer(chofer);
-        viaje.setPasajero(pasajero);
-        viaje.setFechaCreacion(LocalDateTime.now());
 
         ViajeCreateRequest request= new ViajeCreateRequest(
                 "Av. 123",
@@ -231,14 +224,6 @@ class ViajeServiceTest {
         pasajero.setId(2L);
         pasajero.setNombres("María María");
         pasajero.setRol(RolEnum.DUENO_MASCOTA.getDescripcion());
-
-        Viaje viaje = new Viaje();
-        viaje.setId(1L);
-        viaje.setDireccion("Av. 123");
-        viaje.setCiudad("Springfield");
-        viaje.setChofer(chofer);
-        viaje.setPasajero(pasajero);
-        viaje.setFechaCreacion(LocalDateTime.now());
 
         ViajeCreateRequest request= new ViajeCreateRequest(
                 "Av. 123",
@@ -267,14 +252,6 @@ class ViajeServiceTest {
         pasajero.setNombres("María María");
         pasajero.setRol(RolEnum.DUENO_MASCOTA.getDescripcion());
 
-        Viaje viaje = new Viaje();
-        viaje.setId(1L);
-        viaje.setDireccion("Av. 123");
-        viaje.setCiudad("Springfield");
-        viaje.setChofer(chofer);
-        viaje.setPasajero(pasajero);
-        viaje.setFechaCreacion(LocalDateTime.now());
-
         ViajeCreateRequest request= new ViajeCreateRequest(
                 "Av. 123",
                 "Springfield",
@@ -301,14 +278,6 @@ class ViajeServiceTest {
         pasajero.setId(2L);
         pasajero.setNombres("María María");
         pasajero.setRol(RolEnum.CONDUCTOR.getDescripcion());
-
-        Viaje viaje = new Viaje();
-        viaje.setId(1L);
-        viaje.setDireccion("Av. 123");
-        viaje.setCiudad("Springfield");
-        viaje.setChofer(chofer);
-        viaje.setPasajero(pasajero);
-        viaje.setFechaCreacion(LocalDateTime.now());
 
         ViajeCreateRequest request= new ViajeCreateRequest(
                 "Av. 123",
